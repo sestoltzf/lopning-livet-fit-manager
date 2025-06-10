@@ -7,7 +7,7 @@ const fitLibrary = {
     {
       id: 'back-1',
       name: 'Backpass 3x(60-45-30s)',
-      filename: '__Backpass_3x(60-...0s)_workout (1) (1).fit',
+      filename: 'Backpass_3x60-45-30s_workout.fit',
       description: '3 serier med 60s, 45s, 30s uppför backe',
       difficulty: 'Hög',
       duration: '45-60 min',
