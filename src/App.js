@@ -406,7 +406,7 @@ const GarminFitManager = () => {
           </div>
         </div>
         <p className="leading-relaxed" style={{color: '#F7F7ED'}}>
-          Anpassa löpning efter livet, inte tvärtom. Välj från l&l träningspass och överför enkelt till din Garmin-klocka.
+          Välj från l&l träningspass och överför enkelt till din Garmin-klocka.
         </p>
       </div>
 
