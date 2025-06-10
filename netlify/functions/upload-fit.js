@@ -1,10 +1,10 @@
 const { Octokit } = require("@octokit/rest");
 
 exports.handler = async (event, context) => {
-  // Bara POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
@@ -12,24 +12,20 @@ exports.handler = async (event, context) => {
   try {
     const { fileName, fileContent, description, author } = JSON.parse(event.body);
     
-    // GitHub setup
     const octokit = new Octokit({
       auth: process.env.GITHUB_TOKEN
     });
 
-    const owner = process.env.GITHUB_OWNER; // ditt github användarnamn
-    const repo = process.env.GITHUB_REPO;   // repository namn
+    const owner = process.env.GITHUB_OWNER;
+    const repo = process.env.GITHUB_REPO;
 
-    // Konvertera base64 till buffer
-    const fileBuffer = Buffer.from(fileContent, 'base64');
-    
-    // Skapa fil på GitHub
-    const response = await octokit.rest.repos.createOrUpdateFileContents({
+    // Lägg till fil till public/fit-files/
+    await octokit.rest.repos.createOrUpdateFileContents({
       owner,
       repo,
       path: `public/fit-files/${fileName}`,
       message: `Community upload: ${fileName} by ${author}`,
-      content: fileBuffer.toString('base64'),
+      content: fileContent,
       committer: {
         name: 'FIT Manager Bot',
         email: 'fit-manager@lopning-livet.se'
@@ -37,17 +33,20 @@ exports.handler = async (event, context) => {
     });
 
     // Lägg till i community-listan
-    const communityFile = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path: 'src/communityWorkouts.json'
-    }).catch(() => ({ data: { content: btoa('[]') } }));
+    let communityWorkouts = [];
+    try {
+      const communityFile = await octokit.rest.repos.getContent({
+        owner,
+        repo,
+        path: 'src/communityWorkouts.json'
+      });
+      communityWorkouts = JSON.parse(
+        Buffer.from(communityFile.data.content, 'base64').toString()
+      );
+    } catch (e) {
+      // Filen finns inte än
+    }
 
-    const communityWorkouts = JSON.parse(
-      Buffer.from(communityFile.data.content, 'base64').toString()
-    );
-
-    // Lägg till ny workout
     communityWorkouts.push({
       id: `community-${Date.now()}`,
       name: fileName.replace('.fit', ''),
@@ -56,17 +55,16 @@ exports.handler = async (event, context) => {
       author: author,
       uploadedAt: new Date().toISOString(),
       type: 'Community',
-      verified: false
+      difficulty: 'Varierar',
+      duration: 'Se beskrivning'
     });
 
-    // Uppdatera community-filen
     await octokit.rest.repos.createOrUpdateFileContents({
       owner,
       repo,
       path: 'src/communityWorkouts.json',
       message: `Add community workout: ${fileName}`,
       content: Buffer.from(JSON.stringify(communityWorkouts, null, 2)).toString('base64'),
-      sha: communityFile.data.sha,
       committer: {
         name: 'FIT Manager Bot',
         email: 'fit-manager@lopning-livet.se'
@@ -75,9 +73,10 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ 
         success: true, 
-        message: 'Fil uppladdad! Den kommer att vara tillgänglig inom några minuter.',
+        message: 'Tack för ditt bidrag! Passet kommer att vara tillgängligt inom några minuter när sidan uppdateras.',
         fileName: fileName
       })
     };
@@ -86,7 +85,8 @@ exports.handler = async (event, context) => {
     console.error('Upload error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Upload misslyckades' })
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'Upload misslyckades: ' + error.message })
     };
   }
 };
