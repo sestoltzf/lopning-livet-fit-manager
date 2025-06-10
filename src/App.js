@@ -495,7 +495,7 @@ const GarminFitManager = () => {
               {getAllWorkouts().length} tillgängliga
             </span>
           </div>
-          <p className="text-stone-600 mb-6">Välj från {getAllWorkouts().length} professionellt utformade träningspass:</p>
+          <p className="text-stone-600 mb-6">Välj från {getAllWorkouts().length} våra träningspass:</p>
           
           <div className="space-y-3">
             {Object.entries(categories).map(([categoryKey, category]) => {
@@ -690,7 +690,7 @@ const GarminFitManager = () => {
       <div className="mt-16 pt-8 border-t border-stone-200 text-center text-stone-500">
         <p className="text-sm">
           Stöder alla Garmin-klockor som accepterar FIT-filer via USB-anslutning • 
-          <span className="font-medium"> Gå med i löpgruppen på Discord för mer community-innehåll</span>
+          <span className="font-medium"> Passen kan innehålla fel så det är viktigt att kolla igenom dem innan</span>
         </p>
       </div>
     </div>
