@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Download, FileText, Watch, Usb, CheckCircle, Trash2, Info, ChevronDown, ChevronRight } from 'lucide-react';
 
 // FIT Library data - alla l&l träningspass
