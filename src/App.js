@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Download, FileText, Watch, Usb, CheckCircle, Trash2, Info, ChevronDown, ChevronRight } from 'lucide-react';
 
 // Importera community workouts
