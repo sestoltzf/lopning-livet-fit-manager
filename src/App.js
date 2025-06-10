@@ -34,7 +34,7 @@ const fitLibrary = {
     {
       id: 'back-4',
       name: 'Backpass 10x60s under',
-      filename: 'Backpass_10_x_60_...under_workout (1).fit',
+      filename: 'Backpass_10_x_60.fit',
       description: '10 x 60s uppför med jogg ner',
       difficulty: 'Hög',
       duration: '45-60 min',
@@ -43,7 +43,7 @@ const fitLibrary = {
     {
       id: 'back-5',
       name: 'Backpass 10x60s under (v2)',
-      filename: 'Backpass_10_x_60_...under_workout (2).fit',
+      filename: 'Backpass_10_x_60_2.fit',
       description: '10 x 60s uppför med jogg ner - alternativ version',
       difficulty: 'Hög',
       duration: '45-60 min',
@@ -90,7 +90,7 @@ const fitLibrary = {
     {
       id: 'fartlek-5',
       name: 'Fartlek 5x60s...45',
-      filename: '__Fartlek_5x60_60s...45_workout (1) (1).fit',
+      filename: 'Fartlek_5x60_60.fit',
       description: '5 x 60s med 45s vila',
       difficulty: 'Medel',
       duration: '35-45 min',
@@ -155,7 +155,7 @@ const fitLibrary = {
     {
       id: 'fart-3',
       name: 'Fartpass 3xSuper...ar',
-      filename: '__Fartpass_3xSuper...ar_workout (1) (1).fit',
+      filename: 'Fartpass_3xSuper.fit',
       description: '3 x Supersnabba repetitioner',
       difficulty: 'Hög',
       duration: '45-60 min',
@@ -218,7 +218,7 @@ const fitLibrary = {
     {
       id: 'fart-10',
       name: 'Fartpass 30min...ressivt',
-      filename: '__Fartpass_30min_...ressivt_workout (1).fit',
+      filename: 'Fartpass_30min_prog.fit',
       description: '30 min progressivt tempo',
       difficulty: 'Medel',
       duration: '60-75 min',
@@ -227,7 +227,7 @@ const fitLibrary = {
     {
       id: 'fart-11',
       name: 'Fartpass 45min...ressivt',
-      filename: '__Fartpass_45min_...ressivt_workout (1).fit',
+      filename: 'Fartpass_45min_prog.fit',
       description: '45 min progressivt tempo',
       difficulty: 'Hög',
       duration: '75-90 min',
@@ -274,7 +274,7 @@ const fitLibrary = {
     {
       id: 'lang-1',
       name: 'Långpass 90-100min inkl.',
-      filename: '__Långpass_90-100...inkl.__workout (1).fit',
+      filename: 'Langpass_90-100min.fit',
       description: 'Långpass 90-100 minuter inklusive uppvärmning',
       difficulty: 'Medel',
       duration: '90-100 min',
@@ -305,7 +305,7 @@ const fitLibrary = {
     {
       id: 'spec-2',
       name: 'Varvetspecial - spuring',
-      filename: 'Varvetspecial_-_spu...ing_1_workout (1).fit',
+      filename: 'varvetspecial.fit',
       description: 'Specialpass för Göteborgsvarvet med spurt',
       difficulty: 'Hög',
       duration: '60-75 min',
