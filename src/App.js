@@ -346,7 +346,6 @@ const downloadFitFile = async (filename) => {
 };
 
 const uploadToNetlify = async (file, description, author) => {
-  const formData = new FormData();
   
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
